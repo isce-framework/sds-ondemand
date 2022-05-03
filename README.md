@@ -46,15 +46,15 @@ This repository is laid out in the following manner:
 
 ```
 sds-ondemand
-├── *.ipynb                   The primary use case notebooks
-├── environments              Directory containing notebook(s) to create science data processing conda environments and jupyter kernels
-├── support_docs
-   ├── smallbaselineApp       Supporting image files for the smallbaselineApp notebook.
-   ├── topsApp                Supporting image and document files for the topsApp notebook.
-   └── other_notebooks        Other notebooks of potential interest, not covered in the user's guide.
-├── python                    Supporting python scripts referenced in the notebooks.
-├── notebook_output           Location of notebook downloads and generated data files, each notebook creates its own subdirectory.
-├── docker                    Directory containing dockerfile and support files for notebook(s) to be processed at scale
-└── notebook_pges             Directory containing notebooks to be processed at scale
+-- *.ipynb                   The primary use case notebooks
+-- environments              Directory containing notebook(s) to create science data processing conda environments and jupyter kernels
+-- support_docs
+---- smallbaselineApp       Supporting image files for the smallbaselineApp notebook.
+---- topsApp                Supporting image and document files for the topsApp notebook.
+---- other_notebooks        Other notebooks of potential interest, not covered in the user's guide.
+-- python                    Supporting python scripts referenced in the notebooks.
+-- notebook_output           Location of notebook downloads and generated data files, each notebook creates its own subdirectory.
+-- docker                    Directory containing dockerfile and support files for notebook(s) to be processed at scale
+-- notebook_pges             Directory containing notebooks to be processed at scale
 ```
 
