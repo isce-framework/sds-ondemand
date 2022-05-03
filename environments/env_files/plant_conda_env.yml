@@ -1,0 +1,29 @@
+name: plant
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - asf_search
+  - matplotlib
+  - gdal
+  - xarray
+  - zarr
+  - git
+  - tini
+  - pytest
+  - scons
+  - cmake
+  - cython
+  - ipykernel
+  - parallel
+  - psycopg2
+  - rise
+  - joblib
+  - pyproj
+  - pip
+  - pip:
+    - git+https://gitlab.com/plant/plant.git@stable#egg=plant
+    - git+https://github.com/hysds/notebook_pge_wrapper.git#egg=notebook_pge_wrapper
+    - git+https://github.com/hysds/osaka.git#egg=osaka
+    - git+https://github.com/hysds/otello.git@develop#egg=otello
+    - git+https://github.com/hysds/pele_client.git#egg=pele_client

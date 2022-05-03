@@ -1,0 +1,98 @@
+{
+  "submission_type": "individual",
+  "params": [
+    {
+      "name": "min_lat",
+      "placeholder" : "minimum latitude",
+      "from": "submitter",
+      "type": "number",
+      "default": "37.98"
+    },
+    {
+      "name": "max_lat",
+      "placeholder" : "maximum latitude",
+      "from": "submitter",
+      "type": "number",
+      "default": "38.33"
+    },
+    {
+      "name": "min_lon",
+      "placeholder" : "minimum longditude",
+      "from": "submitter",
+      "type": "number",
+      "default": "-118.21"
+    },
+    {
+      "name": "max_lon",
+      "placeholder" : "maximum langditude",
+      "from": "submitter",
+      "type": "number",
+      "default": "-117.68"
+    },
+    {
+      "name": "reference_slcs",
+      "placeholder" : "reference slc array",
+      "from": "submitter",
+      "type": "text",
+      "default": "[\"S1A_IW_SLC__1SDV_20200511T135117_20200511T135144_032518_03C421_7768\"]"
+    },
+    {
+      "name": "secondary_slcs",
+      "placeholder" : "secondary slc array",
+      "from": "submitter",
+      "type": "text",
+      "default": "[\"S1B_IW_SLC__1SDV_20200517T135026_20200517T135056_021622_0290CB_99E2\"]"
+    },
+    {
+      "name": "sensor_name",
+      "placeholder" : "Sensor name, such as Sentinel 1",
+      "from": "submitter",
+      "type": "text",
+      "default": "SENTINEL1"
+    },
+    {
+      "name": "swaths",
+      "placeholder" : "swaths array",
+      "from": "submitter",
+      "type": "text",
+      "default": "[3]"
+    },
+    {
+      "name": "range_looks",
+      "placeholder" : "range looks value",
+      "from": "submitter",
+      "type": "text",
+      "default": "7"
+    },
+    {
+      "name": "azimuth_looks",
+      "placeholder" : "azimuth looks value",
+      "from": "submitter",
+      "type": "text",
+      "default": "3"
+    },
+    {
+      "name": "do_unwrap",
+      "placeholder" : "do unnwrap True or False",
+      "from": "submitter",
+      "type": "text",
+      "default": "True"
+    },
+    {
+      "name": "unwrapper_name",
+      "placeholder" : "unwrapper name",
+      "from": "submitter",
+      "type": "text",
+      "default": "snaphu_mcf"
+    },
+    {
+      "name": "do_denseoffsets",
+      "placeholder" : "denseoffsets True or False",
+      "from": "submitter",
+      "type": "text",
+      "default": "True"
+    }
+  ],
+  "component": "tosca",
+  "label": "TopsApp Interferogram"
+}

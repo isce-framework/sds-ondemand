@@ -1,0 +1,36 @@
+name: isce_raider
+channels:
+ - conda-forge
+ - anaconda
+ - defaults
+dependencies:
+ - python>=3
+ - cartopy
+ - cdsapi
+ - cfgrib
+ - cmake
+ - cxx-compiler
+ - cython
+ - dask
+ - ecmwf-api-client
+ - gdal>=3.0
+ - h5py
+ - libgdal
+ - matplotlib
+ - netcdf4
+ - numpy
+ - pandas
+ - progressbar
+ - pydap>3.2.2|<3.2.2
+ - pygrib
+ - pyproj>=2.2.0
+ - rasterio
+ - scipy
+ - shapely
+ - sysroot_linux-64
+ - xarray
+ - pip
+ - pip:
+   - dem_stitcher==0.0.1
+   - boto3
+   - geopandas

@@ -1,0 +1,25 @@
+name: isce
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - isce2
+  - isce3
+  - git
+  - tini
+  - pytest
+  - scons
+  - cmake
+  - cython
+  - ipykernel
+  - parallel
+  - psycopg2
+  - rise
+  - joblib
+  - pyproj
+  - pip
+  - pip:
+    - git+https://github.com/hysds/notebook_pge_wrapper
+    - git+https://github.com/hysds/osaka
+    - git+https://github.com/hysds/otello
+    - git+https://github.com/hysds/pele_client

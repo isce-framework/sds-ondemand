@@ -1,0 +1,67 @@
+{
+  "command": "notebook-pge-wrapper execute /home/jovyan/nisar-on-demand-use-cases/notebook_pges/topsApp.ipynb",
+  "time_limit": 10800,
+  "soft_time_limit": 10500,
+  "disk_usage": "75GB",
+  "required_queues": [
+    "nisar-job_worker-large"
+  ],
+  "imported_worker_files": {
+    "$HOME/.aws": "/home/jovyan/.aws",
+    "$HOME/.netrc": "/home/jovyan/.netrc"
+  },
+  "params": [
+    {
+      "name": "min_lat",
+      "destination": "context"
+    },
+    {
+      "name": "max_lat",
+      "destination": "context"
+    },
+    {
+      "name": "min_lon",
+      "destination": "context"
+    },
+    {
+      "name": "max_lon",
+      "destination": "context"
+    },
+    {
+      "name": "reference_slcs",
+      "destination": "context"
+    },
+    {
+      "name": "secondary_slcs",
+      "destination": "context"
+    },
+    {
+      "name": "sensor_name",
+      "destination": "context"
+    },
+    {
+      "name": "swaths",
+      "destination": "context"
+    },
+    {
+      "name": "range_looks",
+      "destination": "context"
+    },
+    {
+      "name": "azimuth_looks",
+      "destination": "context"
+    },
+    {
+      "name": "do_unwrap",
+      "destination": "context"
+    },
+    {
+      "name": "unwrapper_name",
+      "destination": "context"
+    },
+    {
+      "name": "do_denseoffsets",
+      "destination": "context"
+    }
+  ]
+}
