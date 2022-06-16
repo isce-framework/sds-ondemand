@@ -5,6 +5,7 @@ channels:
 dependencies:
   - isce2
   - isce3
+  - matplotlib
   - git
   - tini
   - pytest
