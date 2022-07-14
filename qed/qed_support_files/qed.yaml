@@ -1,0 +1,33 @@
+# -*- pyre -*-
+#
+# michael a.g. aïvázis <michael.aivazis@para-sim.com>
+# (c) 1998-2022 all rights reserved
+
+
+# test data
+qed.data: /home/jovyan/data
+
+L_051219:
+    uri: "{qed.data}/ASAR_L_JOINT_FP_ID35506_LINE10_RUN02_051219_LEVEL1_RSLC_V1.3.h5"
+
+
+# attach them to the application
+datasets:
+    - asar.rslc#L_051219
+
+
+# overall application configuration
+qed.app:
+    # run as a web app
+    shell: web
+    # for the web server
+    nexus.services.web:
+        # pin the port for serving web content to some number in user space
+        address: ip4:0.0.0.0:8005
+
+# configure the {web} shell
+pyre.shells.web#qed.app.shell:
+    # spawn a new browser window/tab every time the server starts?
+    auto: no
+
+# end of file
