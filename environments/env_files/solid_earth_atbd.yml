@@ -1,0 +1,19 @@
+name: solid-earth-atbd
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+- gdal
+- h5py
+- numpy
+- matplotlib
+- scipy
+- wget
+- awscli         
+- jupyterlab
+- jupyter_contrib_nbextensions
+- jupyter_nbextensions_configurator
+- nbdime
+- geopandas
+- pandas
+- rasterio
