@@ -1,0 +1,25 @@
+name: ecosystems_atbd
+channels:
+  - conda-forge
+dependencies:
+  - hvplot
+  - fiona
+  - scikit-learn
+  - shapely
+  - cartopy
+  - georaster
+  - geopandas
+  - gdal
+  - jupyter
+  - rasterio
+  - numpy
+  - xarray
+  - georasters
+  - fsspec
+  - wget
+  - pywget
+  - plotly
+  - pip
+  - pip:
+    - learn2map
+    - oocprocess
