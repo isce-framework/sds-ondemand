@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python<=3.9
   - isce2
   - isce3
   - matplotlib
@@ -12,13 +13,14 @@ dependencies:
   - scons
   - cmake
   - cython
+  - gdal
   - ipykernel
   - parallel
   - psycopg2
-  - rise
   - joblib
   - pyproj
   - pip
+  - rasterio
   - pip:
     - git+https://github.com/hysds/notebook_pge_wrapper
     - git+https://github.com/hysds/osaka
