@@ -3,6 +3,8 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+  - python<=3.9
+  - python<=3.9
   - _libgcc_mutex=0.1
   - _openmp_mutex=4.5
   - _sysroot_linux-64_curr_repodata_hack=3
