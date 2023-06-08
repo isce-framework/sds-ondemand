@@ -1,4 +1,8 @@
-"""TODO"""
+"""Multi-function module for loading track frame databases,
+augmenting them with NISAR observation data, saving said
+databases, reloading them, and displaying them as interactable
+folium maps.
+"""
 from datetime import datetime, timedelta
 import glob
 import math
@@ -20,102 +24,103 @@ from zipfile import ZipFile
 fiona.drvsupport.supported_drivers["LIBKML"] = "rw"
 fiona.drvsupport.supported_drivers["KML"] = "rw"
 
+# Statically defined radar modes dictionary
+RADAR_MODES = {
+    "064": ["S_37_DH_37_DV"],
+    "065": ["S_10_DH_00_NA"],
+    "066": ["S_10_DV_00_NA"],
+    "067": ["S_25_CP_00_NA"],
+    "068": ["S_37_DH_00_NA"],
+    "069": ["S_37_CP_00_NA"],
+    "070": ["S_25_SH_00_NA"],
+    "071": ["S_25_SV_00_NA"],
+    "072": ["S_75_SH_00_NA"],
+    "073": ["S_75_SV_00_NA"],
+    "074": ["S_37_DV_00_NA"],
+    "076": ["S_37_RH_00_NA"],
+    "086": ["S_10_DH_00_NA"],
+    "087": ["S_10_DV_00_NA"],
+    "088": ["S_25_CP_00_NA"],
+    "089": ["S_37_DH_00_NA"],
+    "090": ["S_37_CP_00_NA"],
+    "091": ["S_25_SH_00_NA"],
+    "092": ["S_25_SV_00_NA"],
+    "093": ["S_75_SH_00_NA"],
+    "094": ["S_75_SV_00_NA"],
+    "095": ["S_37_DV_00_NA"],
 
-modes_dict = {
-"064": ["S_37_DH_37_DV"],
-"065": ["S_10_DH_00_NA"],
-"066": ["S_10_DV_00_NA"],
-"067": ["S_25_CP_00_NA"],
-"068": ["S_37_DH_00_NA"],
-"069": ["S_37_CP_00_NA"],
-"070": ["S_25_SH_00_NA"],
-"071": ["S_25_SV_00_NA"],
-"072": ["S_75_SH_00_NA"],
-"073": ["S_75_SV_00_NA"],
-"074": ["S_37_DV_00_NA"],
-"076": ["S_37_RH_00_NA"],
-"086": ["S_10_DH_00_NA"],
-"087": ["S_10_DV_00_NA"],
-"088": ["S_25_CP_00_NA"],
-"089": ["S_37_DH_00_NA"],
-"090": ["S_37_CP_00_NA"],
-"091": ["S_25_SH_00_NA"],
-"092": ["S_25_SV_00_NA"],
-"093": ["S_75_SH_00_NA"],
-"094": ["S_75_SV_00_NA"],
-"095": ["S_37_DV_00_NA"],
+    "106": ["cal"],
+    "107": ["cal"],
+    "108": ["cal"],
+    "109": ["cal"],
+    "110": ["cal"],
+    "111": ["cal"],
+    "112": ["cal"],
+    "113": ["cal"],
+    "114": ["cal"],
 
-"106": ["cal"],
-"107": ["cal"],
-"108": ["cal"],
-"109": ["cal"],
-"110": ["cal"],
-"111": ["cal"],
-"112": ["cal"],
-"113": ["cal"],
-"114": ["cal"],
+    "128":["L_20_DH_05_DH"],
+    "129":["L_20_DH_05_DV"],
+    "131":["L_80_SH_00_NA"],
+    "132":["L_40_SH_05_SH"],
+    "133":["L_20_SH_05_SH"],
+    "134":["L_05_SV_00_NA"],
+    "135":["L_05_QD_00_NA"],
+    "136":["L_20_DV_05_DV"],
+    "137":["L_40_DH_05_DH"],
+    "138":["L_40_DH_05_DV"],
+    "140":["L_40_QP_05_QP"],
+    "141":["L_20_QP_05_QP"],
+    "142":["L_20_CR_20_CR"],
+    "143":["L_20_DH_20_DV"],
+    "144":["L_80_SH_00_NA"],
+    "145":["L_05_DV_00_NA"],
+    "146":["L_05_QQ_00_NA"],
+    "178":["L_20_DH_05_DH"],
 
-"128":["L_20_DH_05_DH"],
-"129":["L_20_DH_05_DV"],
-"131":["L_80_SH_00_NA"],
-"132":["L_40_SH_05_SH"],
-"133":["L_20_SH_05_SH"],
-"134":["L_05_SV_00_NA"],
-"135":["L_05_QD_00_NA"],
-"136":["L_20_DV_05_DV"],
-"137":["L_40_DH_05_DH"],
-"138":["L_40_DH_05_DV"],
-"140":["L_40_QP_05_QP"],
-"141":["L_20_QP_05_QP"],
-"142":["L_20_CR_20_CR"],
-"143":["L_20_DH_20_DV"],
-"144":["L_80_SH_00_NA"],
-"145":["L_05_DV_00_NA"],
-"146":["L_05_QQ_00_NA"],
-"178":["L_20_DH_05_DH"],
+    "179":["cal"],
+    "180":["cal"],
+    "187":["cal"],
+    "188":["cal"],
+    "189":["cal"],
+    "190":["cal"],
+    "191":["cal"],
 
-"179":["cal"],
-"180":["cal"],
-"187":["cal"],
-"188":["cal"],
-"189":["cal"],
-"190":["cal"],
-"191":["cal"],
-
-"192":["L_20_DH_05_DH","S_25_CP_00_NA"],
-"195":["L_05_SV_00_NA","S_10_DV_00_NA"],
-"196":["L_20_DV_05_DV","S_25_CP_00_NA"],
-"197":["L_40_DH_05_DH","S_37_CP_00_NA"],
-"199":["L_40_QP_05_QP","S_75_SH_00_NA"],
-"205":["L_80_SH_00_NA","S_25_CP_00_NA"],
-"206":["L_20_DH_05_DH","S_25_SV_00_NA"],
-"207":["L_40_DH_05_DH","S_75_SV_00_NA"],
-"232":["L_05_SV_00_NA","S_05_CP_00_NA"],
-"238":["L_40_DH_05_DH","S_37_DH_00_NA"],
-"240":["L_20_DH_05_DV", "S_25_DH_00_NA"],
-"241":["L_20_DH_05_DH","S_25_DH_00_NA"],
-"242":["L_40_DH_05_DH","S_25_DH_00_NA"],
-"243":["L_40_DH_05_DV","S_25_DH_00_NA"],
-"244":["L_40_QP_05_QP","S_25_DH_00_NA"],
-"245":["L_20_QP_05_QP","S_25_DH_00_NA"],
-"246":["L_80_SH_00_NA","S_37_SH_00_NA"],
-"247":["L_40_SH_05_SH", "S_37_SH_00_NA"],
-"254":["Post-Take-Joint"],
-"255":["Pre-Take-Joint"],
+    "192":["L_20_DH_05_DH","S_25_CP_00_NA"],
+    "195":["L_05_SV_00_NA","S_10_DV_00_NA"],
+    "196":["L_20_DV_05_DV","S_25_CP_00_NA"],
+    "197":["L_40_DH_05_DH","S_37_CP_00_NA"],
+    "199":["L_40_QP_05_QP","S_75_SH_00_NA"],
+    "205":["L_80_SH_00_NA","S_25_CP_00_NA"],
+    "206":["L_20_DH_05_DH","S_25_SV_00_NA"],
+    "207":["L_40_DH_05_DH","S_75_SV_00_NA"],
+    "232":["L_05_SV_00_NA","S_05_CP_00_NA"],
+    "238":["L_40_DH_05_DH","S_37_DH_00_NA"],
+    "240":["L_20_DH_05_DV", "S_25_DH_00_NA"],
+    "241":["L_20_DH_05_DH","S_25_DH_00_NA"],
+    "242":["L_40_DH_05_DH","S_25_DH_00_NA"],
+    "243":["L_40_DH_05_DV","S_25_DH_00_NA"],
+    "244":["L_40_QP_05_QP","S_25_DH_00_NA"],
+    "245":["L_20_QP_05_QP","S_25_DH_00_NA"],
+    "246":["L_80_SH_00_NA","S_37_SH_00_NA"],
+    "247":["L_40_SH_05_SH", "S_37_SH_00_NA"],
+    "254":["Post-Take-Joint"],
+    "255":["Pre-Take-Joint"],
 }
 
-half_frame_modes = []
-for mode_key, value_list in modes_dict.items():
+# Extracted list of 80 MHz radar modes from the modes dictionary
+HALF_FRAME_MODES = []
+for mode_key, value_list in RADAR_MODES.items():
     for val in value_list:
         if val.startswith("L_80"):
-            half_frame_modes.append(mode_key)
+            HALF_FRAME_MODES.append(mode_key)
             break
 
 
 # Eval functions from copied from SDS PCM
 def convert_datetime(datetime_obj, strformat="%Y-%m-%dT%H:%M:%S.%f"):
-    """
-    Converts from a datetime string to a datetime object or vice versa
+    """Converts from a datetime string to a datetime object
+    or vice versa.
     """
     if isinstance(datetime_obj, datetime):
         return datetime_obj.strftime(strformat)
@@ -123,9 +128,8 @@ def convert_datetime(datetime_obj, strformat="%Y-%m-%dT%H:%M:%S.%f"):
 
 
 def to_datetime(input_object, strformat="%Y-%m-%dT%H:%M:%S.%f"):
-    """
-    Takes as input either a datetime object or an ISO datetime string in UTC
-    and returns a datetime object
+    """Takes as input either a datetime object or an ISO datetime string
+    in UTC and returns a datetime object.
     """
     if isinstance(input_object, str):
         return convert_datetime(input_object, strformat)
@@ -272,7 +276,7 @@ class TrackFrameAnalyzer:
                 for decription in s["Description"]:
                     radar_mode = decription.split()[1].split("=")[1].split("conf")[1]
                     radar_modes.append(radar_mode)
-                    radar_modes_name.append(modes_dict[radar_mode][0])
+                    radar_modes_name.append(RADAR_MODES[radar_mode][0])
 
                     start_time_str = decription.split()[4]
                     start_times.append(to_datetime(start_time_str,strformat=TrackFrameAnalyzer.obs_strformat))
@@ -352,7 +356,7 @@ class TrackFrameAnalyzer:
                     self.df.at[i,"mixed_mode"] = True
                     self.df.at[i,"number_of_modes"] = self.df.at[i,"number_of_modes"] + 1
                 # If at least one radar mode is a half frame mode, mark it as so
-                if row.radar_mode in half_frame_modes:
+                if row.radar_mode in HALF_FRAME_MODES:
                     self.df.at[i, "half_frame_mode"] = True
 
                 # Looks like we need to add a column to this crap...
@@ -578,12 +582,3 @@ class TrackFrameAnalyzer:
                     utc_time = to_datetime(time_node.text[:-3], strformat=TrackFrameAnalyzer.strformat)
                     cycle_zero_times.append(utc_time)
         return np.sort(cycle_zero_times)
-    
-
-def main():
-    """Main function."""
-    print(f"Hello world! {os.getcwd()}")
-
-
-if __name__ == "__main__":
-    main()
