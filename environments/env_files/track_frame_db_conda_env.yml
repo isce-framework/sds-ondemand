@@ -1,0 +1,13 @@
+name: track_frame_db
+channels:
+ - conda-forge
+ - defaults
+dependencies:
+- gdal
+- h5py
+- numpy
+- geopandas
+- jupyterlab
+- pandas
+- matplotlib
+- fiona
