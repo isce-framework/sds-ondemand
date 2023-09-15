@@ -1,0 +1,32 @@
+name: snappy_py36
+channels:
+  - conda-forge
+dependencies:
+  - python=3.6
+  - jupyter
+  - ipyleaflet
+  - h5py
+  - fsspec
+  - asf_search
+  - georaster
+  - plotly
+  - numpy
+  - xarray
+  - hvplot
+  - cartopy
+  - pip
+  - geoviews
+  - shapely
+  - rasterio
+  - pywget
+  - georasters
+  - gdal
+  - datashader
+  - fiona
+  - scikit-learn
+  - geopandas
+  - wget
+  - ca-certificates
+  - certifi
+  - openssl
+prefix: /home/jovyan/.local/envs/snappy_py36
