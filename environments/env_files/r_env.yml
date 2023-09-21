@@ -1,0 +1,15 @@
+name: r_env
+channels:
+  - r
+  - conda-forge
+dependencies:
+  - r-base
+  - r-essentials
+  - r-future
+  - r-stringr
+  - r-raster
+  - r-dplyr
+  - r-lidr
+  - r-terra
+  - r-irkernel
+prefix: /home/jovyan/.local/envs/r_env
