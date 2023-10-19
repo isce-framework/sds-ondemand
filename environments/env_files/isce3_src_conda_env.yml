@@ -184,6 +184,8 @@ dependencies:
   - ptyprocess=0.7.0=pyhd3deb0d_0
   - pure_eval=0.2.2=pyhd8ed1ab_0
   - pyaps3=0.3.2=pyhd8ed1ab_1
+  - pybind11=2.11.1=py39h7633fee_2
+  - pybind11-global=2.11.1=py39h7633fee_2
   - pycparser=2.21=pyhd8ed1ab_0
   - pygments=2.15.1=pyhd8ed1ab_0
   - pygrib=2.1.4=py39h828a7e6_6
@@ -265,6 +267,6 @@ variables:
   CUDAHOSTCXX: x86_64-conda-linux-gnu-g++
   CC: x86_64-conda-linux-gnu-gcc
   CXX: x86_64-conda-linux-gnu-g++
-  PYTHONPATH: '/home/jovyan/isce3/build/packages:'
+  PYTHONPATH: /home/jovyan/isce3/build/packages
   LD_LIBRARY_PATH: /home/jovyan/isce3/build/lib64:/usr/lib64:/opt/conda/lib:/usr/local/nvidia/lib:/usr/local/nvidia/lib64
 prefix: /home/jovyan/.local/envs/isce3_src
