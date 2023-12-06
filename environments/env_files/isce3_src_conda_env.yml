@@ -25,6 +25,7 @@ dependencies:
   - aws-checksums=0.1.14=h03acc5a_5
   - aws-crt-cpp=0.19.8=hf7fbfca_12
   - aws-sdk-cpp=1.10.57=h17c43bd_8
+  - backoff=2.2.1=pyhd8ed1ab_0
   - backports=1.0=pyhd8ed1ab_3
   - backports.functools_lru_cache=1.6.5=pyhd8ed1ab_0
   - beautifulsoup4=4.12.2=pyha770c72_0
