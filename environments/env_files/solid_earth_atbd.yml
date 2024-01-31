@@ -3,6 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
+- notebook<7.0
 - gdal
 - h5py
 - numpy
