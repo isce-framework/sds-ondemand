@@ -18,6 +18,7 @@ c.ServerProxy.servers = {
       'run',
       '-n', 'qed',
       'qed',
+      '--qed.shell=web',
       '--qed.app.nexus.services.web.address=ip4:127.0.0.1:{port}',
     ],
     'environment': {},
