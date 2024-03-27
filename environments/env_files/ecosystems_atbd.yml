@@ -18,6 +18,10 @@ dependencies:
   - fsspec
   - wget
   - pywget
+  - boto3
+  - s3f3
+  - earthaccess
+  - asf_search
   - plotly
   - asf_search
   - openpyxl
