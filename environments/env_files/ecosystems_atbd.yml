@@ -23,7 +23,15 @@ dependencies:
   - earthaccess
   - asf_search
   - plotly
+  - asf_search
+  - openpyxl
+  - boto3
+  - s3fs
+  - earthaccess
+  - psycopg2
+  - pandas
   - pip
+  - configparser
   - pip:
     - learn2map
     - oocprocess
