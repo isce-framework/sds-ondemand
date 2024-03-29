@@ -19,7 +19,7 @@ dependencies:
   - wget
   - pywget
   - boto3
-  - s3f3
+  - s3fs
   - earthaccess
   - asf_search
   - plotly
