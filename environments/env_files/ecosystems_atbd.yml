@@ -26,7 +26,6 @@ dependencies:
   - asf_search
   - openpyxl
   - boto3
-  - s3fs
   - earthaccess
   - psycopg2
   - pandas
