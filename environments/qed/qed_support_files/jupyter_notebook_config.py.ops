@@ -1,31 +1,18 @@
 c.ServerProxy.servers = {
-  'hello_world': {
-    'command': [
-      'flask',
-       'run',
-       '-p {port}'
-    ],
-    'environment': {},
-    'request_headers_override': {},
-    'timeout': 20,
-    'launcher_entry': {
-      'title': 'Hello World'
-    }
-  },
   'qed': {
     'command': [
       'conda',
       'run',
       '-n', 'qed',
       'qed',
-      '--qed.shell=web',
+      '--qed.app.shell=web',
       '--qed.app.nexus.services.web.address=ip4:127.0.0.1:{port}',
     ],
     'environment': {},
     'request_headers_override': {},
     'timeout': 60,
     'launcher_entry': {
-      'title': 'QED'
+      'title': 'qed'
     }
   }
 }
