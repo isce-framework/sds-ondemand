@@ -5,6 +5,7 @@ channels:
 dependencies:
 - mintpy
 - aria-tools
+- dem_stitcher
 - pip
 
 - pip:
