@@ -1,4 +1,3 @@
-name: isce3_src
 channels:
   - conda-forge
   - defaults
@@ -377,11 +376,4 @@ dependencies:
   - zlib=1.2.13=h166bdaf_4
   - zlib-ng=2.0.7=h0b41bf4_0
   - zstd=1.5.5=hfc55251_0
-variables:
-  ISCE3_BUILD_DIR: /home/jovyan/isce3/build
-  CUDAHOSTCXX: x86_64-conda-linux-gnu-g++
-  CC: x86_64-conda-linux-gnu-gcc
-  CXX: x86_64-conda-linux-gnu-g++
-  PYTHONPATH: /home/jovyan/isce3/build/packages
-  LD_LIBRARY_PATH: /home/jovyan/isce3/build/lib64:/usr/lib64:/opt/conda/lib:/usr/local/nvidia/lib:/usr/local/nvidia/lib64
 prefix: /home/jovyan/.local/envs/isce3_src
