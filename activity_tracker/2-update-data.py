@@ -35,6 +35,7 @@ USAGE_HIST_FILE = 'usage-history.csv'
 EMAIL_HIST_FIELD_NAMES = ['username', 'instance_start', 'inactivity_start', 'inactive_hours']
 EMAIL_HIST_FILE = 'email-history.csv'
 
+INACTIVITY_NOTIF_HELP_EMAIL = os.environ['INACTIVITY_NOTIF_HELP_EMAIL']
 InstanceSnapshot = namedtuple('InstanceSnapshot', USAGE_HIST_FIELD_NAMES)
 
 class UserNotFoundError(Exception):
@@ -192,7 +193,7 @@ Reminder on how to shutdown your instance: \n\
 \n\
 ********************************************************************************************** \n\
 * This is an automated email notification system. Do not reply back to this email as this inbox is not monitored. \n\
-* If you have questions, please email the nisar-ondemand-help@jpl.nasa.gov address for assistance.                 \n\
+* If you have questions, please email the {INACTIVITY_NOTIF_HELP_EMAIL} address for assistance.                 \n\
 ********************************************************************************************** \
 " \
 | mailx -s "NISAR Science Ondemand Instance Idle Notification" \
@@ -218,7 +219,7 @@ should be shut it down by an admin. \
 \n\
 ********************************************************************************************** \n\
 * This is an automated email notification system. Do not reply back to this email as this inbox is not monitored. \n\
-* If you have questions, please email the nisar-ondemand-help@jpl.nasa.gov address for assistance.                 \n\
+* If you have questions, please email the {INACTIVITY_NOTIF_HELP_EMAIL} address for assistance.                 \n\
 ********************************************************************************************** \
 " \
 | mailx -s "NISAR Science Ondemand Instance Idle Notification" \
